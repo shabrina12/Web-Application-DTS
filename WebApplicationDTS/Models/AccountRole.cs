@@ -14,7 +14,7 @@ namespace WebApplicationDTS.Models
         public string AccountNik { get; set; }
         public Account Accounts { get; set; } //relation one to many ke tabel Account
 
-        [Column(name: "role_id", TypeName = "varchar(11)")]
+        [Column(name: "role_id")]
         public int RoleId { get; set; }
         public Role Roles { get; set; } //relation one to many ke tabel Role
     }
