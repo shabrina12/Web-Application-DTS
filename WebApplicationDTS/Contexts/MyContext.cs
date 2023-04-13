@@ -28,42 +28,42 @@ namespace WebApplicationDTS.Contexts
             // Relasi antara satu University dengan banyak Education
             modelBuilder.Entity<University>()
                         .HasMany(u => u.Educations)
-                        .WithOne(e => e.Universities)
+                        .WithOne(e => e.University)
                         .HasForeignKey(u => u.UniversityId)
                         .OnDelete(DeleteBehavior.NoAction);
 
             // Relasi antara satu Education dengan satu Profiling
-            modelBuilder.Entity<Education>()
-                        .HasOne<Profiling>(p => p.Profilings)
-                        .WithOne(e => e.Educations)
-                        .HasForeignKey<Profiling>(p => p.EducationId)
-                        .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Profiling>()
+                     .HasOne(p => p.Education)
+                     .WithOne(e => e.Profiling)
+                     .HasForeignKey<Profiling>(p => p.EducationId)
+                     .OnDelete(DeleteBehavior.NoAction);
 
             // Relasi antara satu Profiling dengan satu Employee
             modelBuilder.Entity<Employee>()
-                        .HasOne<Profiling>(p => p.Profilings)
-                        .WithOne(e => e.Employees)
+                        .HasOne(e => e.Profiling)
+                        .WithOne(p => p.Employee)
                         .HasForeignKey<Profiling>(p => p.EmployeeNik)
                         .OnDelete(DeleteBehavior.NoAction);
 
             // Relasi antara satu Role dengan banyak Account Roles
             modelBuilder.Entity<Role>()
                         .HasMany(ar => ar.AccountRoles)
-                        .WithOne(r => r.Roles)
+                        .WithOne(r => r.Role)
                         .HasForeignKey(ar => ar.RoleId)
                         .OnDelete(DeleteBehavior.NoAction);
 
             // Relasi antara satu Account dengan banyak Account Roles
             modelBuilder.Entity<Account>()
                         .HasMany(ar => ar.AccountRoles)
-                        .WithOne(a => a.Accounts)
-                        .HasForeignKey(ar => ar.AccountNik);
-                        //.OnDelete(DeleteBehavior.NoAction);
+                        .WithOne(a => a.Account)
+                        .HasForeignKey(ar => ar.AccountNik)
+                        .OnDelete(DeleteBehavior.NoAction);
 
             // Relasi antara satu Account dengan satu Employee
             modelBuilder.Entity<Employee>()
-                        .HasOne<Account>(a => a.Accounts)
-                        .WithOne(e => e.Employees)
+                        .HasOne(e => e.Account)
+                        .WithOne(a => a.Employee)
                         .HasForeignKey<Account>(a => a.EmployeeNik)
                         .OnDelete(DeleteBehavior.NoAction);
 
@@ -77,22 +77,6 @@ namespace WebApplicationDTS.Contexts
                         .HasOne(e => e.University)
                         .WithMany(u => u.Educations)
                         .HasForeignKey(e => e.UniversityId);*/
-        }
-
-
-        // Fluent API
-        public DbSet<WebApplicationDTS.ViewModels.LoginVM>? LoginVM { get; set; }
-
-
-        // Fluent API
-        public DbSet<WebApplicationDTS.ViewModels.RegisterVM>? RegisterVM { get; set; }
-
-
-        // Fluent API
-        //public DbSet<WebApplicationDTS.ViewModels.RegisterVM>? RegisterVM { get; set; }
-
-
-        // Fluent API
-        //public DbSet<WebApplicationDTS.ViewModels.LoginVM>? LoginVM { get; set; }
+        }  
     }
 }

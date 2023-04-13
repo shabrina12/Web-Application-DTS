@@ -59,7 +59,6 @@ namespace WebApplicationDTS.Controllers
         }
 
         // GET - Login
-        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -82,7 +81,6 @@ namespace WebApplicationDTS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-		[HttpGet]
         public IActionResult Delete(string id)
         {
             var entity = _accountRepository.GetById(id);

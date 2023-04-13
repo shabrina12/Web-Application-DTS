@@ -7,6 +7,10 @@ namespace WebApplicationDTS.Controllers
 {
     public class RoleController : Controller
     {
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         private readonly IRoleRepository _roleRepository;
 
         public RoleController(IRoleRepository roleRepository)
@@ -42,34 +46,34 @@ namespace WebApplicationDTS.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            var entity = _roleRepository.GetById(id);
-            return View(entity);
-        }
+        //[HttpGet]
+        //public IActionResult Edit(int id)
+        //{
+        //    var entity = _roleRepository.GetById(id);
+        //    return View(entity);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Role role)
-        {
-            _roleRepository.Update(role);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Edit(Role role)
+        //{
+        //    _roleRepository.Update(role);
+        //    return RedirectToAction("Index");
+        //}
 
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            var entity = _roleRepository.GetById(id);
-            return View(entity); //View untuk method Get aja, Post ga perlu view
-        }
+        //[HttpGet]
+        //public IActionResult Delete(int id)
+        //{
+        //    var entity = _roleRepository.GetById(id);
+        //    return View(entity); //View untuk method Get aja, Post ga perlu view
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Remove(int id)
-        {
-            _roleRepository.Delete(id);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Remove(int id)
+        //{
+        //    _roleRepository.Delete(id);
+        //    return RedirectToAction("Index");
+        //}
     }
 }

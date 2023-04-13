@@ -9,7 +9,7 @@ namespace WebApplicationDTS.Models
         [Key]
         [Column(name: "id")]
         public int Id { get; set; }
-        public Profiling? Profilings { get; set; } //relation one to one ke tabel Profiling
+        public Profiling? Profiling { get; set; } //relation one to one ke tabel Profiling
 
         [Column(name: "major", TypeName = "varchar(100)")]
         public string Major { get; set; }
@@ -22,6 +22,6 @@ namespace WebApplicationDTS.Models
 
         [Column(name: "university_id")]
         public int UniversityId { get; set; }
-        public University? Universities { get; set; } //relation one to one ke tabel University
+        public University? University { get; set; } //relation one to one ke tabel University
     }
 }

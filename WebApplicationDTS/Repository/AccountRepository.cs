@@ -31,7 +31,7 @@ namespace WebApplicationDTS.Repository
 
                 if (_context.Universities.Any(o => o.Name == university.Name))
                 {               
-                    university.Id = _context.Universities.FirstOrDefault(u => u.Name.Equals(university.Name)).Id;
+                    university.Id = _context.Universities.First(u => u.Name.Equals(university.Name)).Id;
                 }
                 else
                 {
@@ -51,7 +51,6 @@ namespace WebApplicationDTS.Repository
 
                 var employee = new Employee
                 {
-
                     Nik = registerVM.NIK,
                     FirstName = registerVM.FirstName,
                     LastName = registerVM.LastName,
@@ -67,7 +66,7 @@ namespace WebApplicationDTS.Repository
                 var account = new Account
                 {
                     EmployeeNik = registerVM.NIK,
-                    Password = registerVM.Password,
+                    Password = Hashing.HashPassword(registerVM.Password),
                 };
                 _context.Accounts.Add(account);
                 _context.SaveChanges();

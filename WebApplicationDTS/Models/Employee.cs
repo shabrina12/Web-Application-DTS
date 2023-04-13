@@ -11,8 +11,8 @@ namespace WebApplicationDTS.Models
         [Key]
         [Column(name: "NIK", TypeName = "varchar(5)")]
         public string Nik { get; set; }
-        public Profiling? Profilings { get; set; } //relation one to one ke tabel Profiling
-        public Account? Accounts { get; set; } //relation one to one ke tabel Account
+        public Profiling? Profiling { get; set; } //relation one to one ke tabel Profiling
+        public Account? Account { get; set; } //relation one to one ke tabel Account
 
         [Column(name: "first_name", TypeName = "varchar(50)")]
         public string FirstName { get; set; }

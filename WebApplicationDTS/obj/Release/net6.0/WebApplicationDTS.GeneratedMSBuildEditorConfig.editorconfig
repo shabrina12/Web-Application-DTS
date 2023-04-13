@@ -120,16 +120,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shabb/source/repos/WebApplicationDTS/WebApplicationDTS/Views/Role/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/shabb/source/repos/WebApplicationDTS/WebApplicationDTS/Views/Role/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/shabb/source/repos/WebApplicationDTS/WebApplicationDTS/Views/Role/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/shabb/source/repos/WebApplicationDTS/WebApplicationDTS/Views/Role/Index.cshtml]

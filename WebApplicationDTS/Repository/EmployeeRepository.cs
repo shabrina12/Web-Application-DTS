@@ -9,12 +9,15 @@ namespace WebApplicationDTS.Repository
         public EmployeeRepository(MyContext context) : base(context) { }
         public string GetFullName(string email)
         {
-            var employee = _context.Employees.FirstOrDefault(e => e.Email == email);
-            if (employee == null)
-            {
-                return String.Empty;
-            }
-            return employee.FirstName + " " + employee.LastName;            
+            var employee = _context.Employees.First(e => e.Email == email);
+            return employee.FirstName + " " + employee.LastName;
+            //if (employee == null)
+            //{
+            //    return String.Empty;
+            //} else
+            //{
+            //    return employee.FirstName + " " + employee.LastName;
+            //}          
         }
     }
 }

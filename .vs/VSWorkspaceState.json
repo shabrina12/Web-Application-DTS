@@ -6,6 +6,6 @@
     "\\WebApplicationDTS\\Models",
     "\\WebApplicationDTS\\Repository"
   ],
-  "SelectedNode": "\\WebApplicationDTS\\Repository\\AccountRepository.cs",
+  "SelectedNode": "\\WebApplicationDTS\\Controllers\\AccountController.cs",
   "PreviewInSolutionExplorer": false
 }
