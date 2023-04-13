@@ -11,6 +11,7 @@ namespace WebApplicationDTS.ViewModels
         public string Email { get; set; }
 
         // Password
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

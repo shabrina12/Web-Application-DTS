@@ -21,24 +21,21 @@ namespace WebApplicationDTS.Repository
             var university = new University
             {
                 Name = registerVM.UniversityName,
+
             };
 
             if (!_context.Universities.Any(o => o.Name == university.Name))
             {
-                _context.Universities.Add(university);
-                //_context.SaveChanges();
+                var universityExist = _context.Universities.FirstOrDefault(u => u.Name.Equals(university.Name)).Id;
+                university.Id = universityExist;
             }
-			// else
-			//{
-			//_context.Universities.Where(o => o.Name == university.Name);
-			//var SameUni = _context.Universities.Where(o => o.Name == university.Name);
-			//university.Id = SameUni.Id;
-			//_context.Universities.Add(university);
-			//_context.SaveChanges();
-			//}
-			_context.SaveChanges();
+            else
+            {
+                _context.Universities.Add(university);
+                _context.SaveChanges();
+            }            
 
-			var education = new Education
+            var education = new Education
             {
                 Major = registerVM.Major,
                 Degree = registerVM.Degree,
@@ -70,11 +67,14 @@ namespace WebApplicationDTS.Repository
             _context.Accounts.Add(account);
             _context.SaveChanges();
 
-            var accountRole = new AccountRole()
+            var userRole = _context.Roles.FirstOrDefault(r => r.Name.Equals("User"));
+
+            var accountRole = new AccountRole
             {
-                AccountNik = registerVM.NIK,
-                RoleId = 1
+                AccountNik = account.EmployeeNik,
+                RoleId = userRole.Id
             };
+
             _context.AccountRoles.Add(accountRole);
             _context.SaveChanges();
 
@@ -102,12 +102,24 @@ namespace WebApplicationDTS.Repository
             {
                 return false;
             }
-            return PasswordValidation(loginVM.Password, checkLogin.Password);
+            return true;
+            //return PasswordValidation(loginVM.Password, checkLogin.Password);
         }
  
         private bool PasswordValidation(string password, string checkPassword)
         {
             return BCrypt.Net.BCrypt.Verify(password, checkPassword);
         }
-    }
+
+		public UserVM GetUser(string email)
+		{
+			var result = _context.Employees.Select(e => new UserVM
+			{
+				Email = e.Email,
+				FullName = String.Concat(e.FirstName, " ", e.LastName),
+			}).FirstOrDefault(e => e.Email == email);
+
+			return result;
+		}
+	}
 }

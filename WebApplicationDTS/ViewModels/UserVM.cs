@@ -2,13 +2,10 @@
 
 namespace WebApplicationDTS.ViewModels
 {
-    public class UserVM
-    {
-        // Email
-        [EmailAddress]
+	public class UserVM
+	{
+		public string FullName { get; set; }
+  
         public string Email { get; set; }
-        // Password
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-    }
+	}
 }

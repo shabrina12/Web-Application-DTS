@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Win32;
 using NuGet.Protocol.Core.Types;
+using System.Security.Claims;
 using WebApplicationDTS.Repository;
 using WebApplicationDTS.Repository.Contracts;
 using WebApplicationDTS.ViewModels;
@@ -62,8 +63,8 @@ namespace WebApplicationDTS.Controllers
             return View();
         }
 
-
-        [HttpPost("Login")]
+		// POST - Login
+		[HttpPost]
         public IActionResult Login(LoginVM loginVM)
         {
             var result = _accountRepository.Login(loginVM);
@@ -75,10 +76,25 @@ namespace WebApplicationDTS.Controllers
                     Message = "Email atau password tidak ditemukan!"
                 });
             }
-            return RedirectToAction("Index");            
-        }
 
-        [HttpGet]
+            HttpContext.Session.SetString("email", loginVM.Email);
+            HttpContext.Session.SetString("password", loginVM.Password);
+            return RedirectToAction("Welcome");
+		}
+
+        public IActionResult Welcome()
+        {
+            ViewBag.Email = HttpContext.Session.GetString("email");
+            return View(Welcome);
+		}
+		public IActionResult Logout()
+		{
+			HttpContext.Session.Remove("email");
+            HttpContext.Session.Remove("password");
+            return RedirectToAction("Index");
+		}
+
+		[HttpGet]
         public IActionResult Delete(string id)
         {
             var entity = _accountRepository.GetById(id);
