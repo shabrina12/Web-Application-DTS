@@ -51,7 +51,7 @@ namespace WebApplicationDTS.Controllers
             var result = _accountRepository.Register(registerVM);
             if (result > 0)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login");
             }
             return View();
         }

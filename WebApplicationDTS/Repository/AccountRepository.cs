@@ -18,16 +18,14 @@ namespace WebApplicationDTS.Repository
         {
             // Validasi untuk input masing" entitas jika gagal lakukan rollback
             // Validasi apakah input university name ada di database/ tidak
-            var university = new University
+            University university = new University
             {
-                Name = registerVM.UniversityName,
-
+                Name = registerVM.UniversityName
             };
 
-            if (!_context.Universities.Any(o => o.Name == university.Name))
-            {
-                var universityExist = _context.Universities.FirstOrDefault(u => u.Name.Equals(university.Name)).Id;
-                university.Id = universityExist;
+            if (_context.Universities.Any(o => o.Name == university.Name))
+            {               
+                university.Id = _context.Universities.FirstOrDefault(u => u.Name.Equals(university.Name)).Id;
             }
             else
             {
@@ -47,6 +45,7 @@ namespace WebApplicationDTS.Repository
 
             var employee = new Employee
             {
+
                 Nik = registerVM.NIK,
                 FirstName = registerVM.FirstName,
                 LastName = registerVM.LastName,
