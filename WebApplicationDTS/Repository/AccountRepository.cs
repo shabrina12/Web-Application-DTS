@@ -26,18 +26,19 @@ namespace WebApplicationDTS.Repository
             if (!_context.Universities.Any(o => o.Name == university.Name))
             {
                 _context.Universities.Add(university);
-                _context.SaveChanges();
-            }
-            else
-            {
-                //_context.Universities.Where(o => o.Name == university.Name);
-                //var SameUni = _context.Universities.Where(o => o.Name == university.Name);
-                //university.Id = SameUni.Id;
-                //_context.Universities.Add(university);
                 //_context.SaveChanges();
             }
+			// else
+			//{
+			//_context.Universities.Where(o => o.Name == university.Name);
+			//var SameUni = _context.Universities.Where(o => o.Name == university.Name);
+			//university.Id = SameUni.Id;
+			//_context.Universities.Add(university);
+			//_context.SaveChanges();
+			//}
+			_context.SaveChanges();
 
-            var education = new Education
+			var education = new Education
             {
                 Major = registerVM.Major,
                 Degree = registerVM.Degree,
@@ -89,6 +90,7 @@ namespace WebApplicationDTS.Repository
 
         public bool Login(LoginVM loginVM)
         {
+            // Email ada di tabel Employee, Password ada di tabel Account
             var checkLogin = _context.Employees.Join(_context.Accounts, e => e.Nik, a => a.EmployeeNik,(e, a) => 
                 new LoginVM
                 {

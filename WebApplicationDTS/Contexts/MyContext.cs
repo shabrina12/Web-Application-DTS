@@ -57,8 +57,8 @@ namespace WebApplicationDTS.Contexts
             modelBuilder.Entity<Account>()
                         .HasMany(ar => ar.AccountRoles)
                         .WithOne(a => a.Accounts)
-                        .HasForeignKey(ar => ar.AccountNik)
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey(ar => ar.AccountNik);
+                        //.OnDelete(DeleteBehavior.NoAction);
 
             // Relasi antara satu Account dengan satu Employee
             modelBuilder.Entity<Employee>()
