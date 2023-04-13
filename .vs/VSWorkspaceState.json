@@ -3,8 +3,9 @@
     "",
     "\\WebApplicationDTS",
     "\\WebApplicationDTS\\Controllers",
-    "\\WebApplicationDTS\\Models"
+    "\\WebApplicationDTS\\Models",
+    "\\WebApplicationDTS\\Repository"
   ],
-  "SelectedNode": "\\WebApplicationDTS\\Controllers\\EducationController.cs",
+  "SelectedNode": "\\WebApplicationDTS\\Repository\\AccountRepository.cs",
   "PreviewInSolutionExplorer": false
 }

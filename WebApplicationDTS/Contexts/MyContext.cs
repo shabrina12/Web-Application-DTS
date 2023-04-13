@@ -81,10 +81,18 @@ namespace WebApplicationDTS.Contexts
 
 
         // Fluent API
+        public DbSet<WebApplicationDTS.ViewModels.LoginVM>? LoginVM { get; set; }
+
+
+        // Fluent API
         public DbSet<WebApplicationDTS.ViewModels.RegisterVM>? RegisterVM { get; set; }
 
 
         // Fluent API
-        public DbSet<WebApplicationDTS.ViewModels.LoginVM>? LoginVM { get; set; }
+        //public DbSet<WebApplicationDTS.ViewModels.RegisterVM>? RegisterVM { get; set; }
+
+
+        // Fluent API
+        //public DbSet<WebApplicationDTS.ViewModels.LoginVM>? LoginVM { get; set; }
     }
 }

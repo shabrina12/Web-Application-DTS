@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Win32;
 using NuGet.Protocol.Core.Types;
-using System.Security.Claims;
 using WebApplicationDTS.Repository;
 using WebApplicationDTS.Repository.Contracts;
 using WebApplicationDTS.ViewModels;
@@ -13,11 +12,14 @@ namespace WebApplicationDTS.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountRepository _accountRepository;
-        public AccountController(IAccountRepository accountRepository)
+        private readonly IEmployeeRepository _employeeRepository;
+        public AccountController(IAccountRepository accountRepository, IEmployeeRepository employeeRepository)
         {
             _accountRepository = accountRepository;
+            _employeeRepository = employeeRepository;
         }
 
+        // GET ALL DATA
         [HttpGet]
         public IActionResult Index()
         {
@@ -51,7 +53,7 @@ namespace WebApplicationDTS.Controllers
             var result = _accountRepository.Register(registerVM);
             if (result > 0)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Account");
             }
             return View();
         }
@@ -63,36 +65,22 @@ namespace WebApplicationDTS.Controllers
             return View();
         }
 
-		// POST - Login
-		[HttpPost]
+	    // POST - Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginVM loginVM)
         {
             var result = _accountRepository.Login(loginVM);
             if (!result)
             {
-                return NotFound(new
-                {
-                    StatusCode = 404,
-                    Message = "Email atau password tidak ditemukan!"
-                });
+                ModelState.AddModelError(string.Empty, "Email atau Password tidak terdaftar!");
+                return View();
             }
+            var getFullName = _employeeRepository.GetFullName(loginVM.Email);
+            HttpContext.Session.SetString("FullName", getFullName);
 
-            HttpContext.Session.SetString("email", loginVM.Email);
-            HttpContext.Session.SetString("password", loginVM.Password);
-            return RedirectToAction("Welcome");
-		}
-
-        public IActionResult Welcome()
-        {
-            ViewBag.Email = HttpContext.Session.GetString("email");
-            return View(Welcome);
-		}
-		public IActionResult Logout()
-		{
-			HttpContext.Session.Remove("email");
-            HttpContext.Session.Remove("password");
-            return RedirectToAction("Index");
-		}
+            return RedirectToAction("Index", "Home");
+        }
 
 		[HttpGet]
         public IActionResult Delete(string id)

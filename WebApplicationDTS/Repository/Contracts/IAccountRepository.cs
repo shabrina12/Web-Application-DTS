@@ -7,6 +7,5 @@ namespace WebApplicationDTS.Repository.Contracts
     {
         int Register(RegisterVM registerVM);
         bool Login(LoginVM loginVM);
-		UserVM GetUser(string email);
-	}
+    }
 }

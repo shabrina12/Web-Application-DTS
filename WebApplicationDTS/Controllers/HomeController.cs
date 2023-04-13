@@ -13,8 +13,11 @@ namespace WebApplicationDTS.Controllers
             _logger = logger;
         }
 
+        // Menampilkan FullName user di halaman Home/Index ketika user berhasil login
         public IActionResult Index()
         {
+            var getFullNameSesion = HttpContext.Session.GetString("FullName");
+            ViewBag.FullName = getFullNameSesion;
             return View();
         }
 
