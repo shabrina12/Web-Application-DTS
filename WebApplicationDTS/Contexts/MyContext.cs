@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApplicationDTS.Models;
+using WebApplicationDTS.ViewModels;
 
 namespace WebApplicationDTS.Contexts
 {
@@ -66,10 +67,20 @@ namespace WebApplicationDTS.Contexts
                         .HasForeignKey<Account>(a => a.EmployeeNik)
                         .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<RegisterVM>()
+                        .HasNoKey();
+
+            modelBuilder.Entity<LoginVM>()
+                        .HasNoKey();
+
             /*modelBuilder.Entity<Education>()
                         .HasOne(e => e.University)
                         .WithMany(u => u.Educations)
                         .HasForeignKey(e => e.UniversityId);*/
         }
+
+
+        // Fluent API
+        public DbSet<WebApplicationDTS.ViewModels.RegisterVM>? RegisterVM { get; set; }
     }
 }

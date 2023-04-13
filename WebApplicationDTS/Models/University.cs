@@ -12,6 +12,6 @@ namespace WebApplicationDTS.Models
 
         [Column(name: "name", TypeName = "varchar(100)")]
         public string Name { get; set; }
-        public ICollection<Education> Educations { get; set; } //relation one to many ke tabel Education
+        public ICollection<Education>? Educations { get; set; } //relation one to many ke tabel Education
     }
 }
